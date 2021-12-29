@@ -1,7 +1,7 @@
 {
-  "name": "@openzeppelin/subgraphs",
+  "name": "erc20-subgraph",
   "description": "Subgraph templates for @openzeppelin/contracts",
-  "version": "0.1.6-1",
+  "version": "0.1.6",
   "author": "OpenZeppelin Community <maintainers@openzeppelin.org>",
   "license": "MIT",
   "homepage": "https://github.com/OpenZeppelin/openzeppelin-subgraphs.git#readme",
@@ -19,6 +19,13 @@
     "url": "https://github.com/OpenZeppelin/openzeppelin-subgraphs.git/issues"
   },
   "scripts": {
+    "compiler-erc20": "graph-compiler --config configs/sample.json --include ./src/datasources --export-schema --export-subgraph",
+
+    "build-erc20": "graph build generated/sample.subgraph.yaml",
+    "codegen-erc20": "graph codegen generated/sample.subgraph.yaml",
+    "create-erc20-local": "graph create erc20 --node http://127.0.0.1:8020",
+    "deploy-erc20-local": "graph deploy erc20 --ipfs http://10.0.191.31:5001 --node http://127.0.0.1:8020 generated/sample.subgraph.yaml",
+
     "docs": "oz-docs",
     "docs:watch": "npm run docs watch",
     "prepublish": "rimraf artifacts build cache generated",
@@ -26,8 +33,9 @@
     "test": "bash scripts/test.sh"
   },
   "dependencies": {
-    "@amxx/graphprotocol-utils": "^1.1.0-alpha.2",
-    "@openzeppelin/contracts": "^4.4.1"
+    "@amxx/graphprotocol-utils": "^1.1.0-alpha.1",
+    "@openzeppelin/contracts": "^4.4.1",
+    "@openzeppelin/subgraphs": "^0.1.6"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.24.0",

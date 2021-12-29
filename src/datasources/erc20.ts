@@ -22,6 +22,7 @@ import {
 	fetchERC20,
 	fetchERC20Balance,
 	fetchERC20Approval,
+	try_fetchERC20Balance,
 } from '../fetch/erc20'
 
 export function handleTransfer(event: TransferEvent): void {
@@ -50,6 +51,7 @@ export function handleTransfer(event: TransferEvent): void {
 		ev.fromBalance         = balance.id
 	}
 
+
 	if (event.params.to.toHex() == constants.ADDRESS_ZERO) {
 		let totalSupply        = fetchERC20Balance(contract, null)
 		totalSupply.valueExact = totalSupply.valueExact.minus(event.params.value)
@@ -65,6 +67,9 @@ export function handleTransfer(event: TransferEvent): void {
 		ev.to                  = to.id
 		ev.toBalance           = balance.id
 	}
+
+	ev.toBalance = try_fetchERC20Balance(event.address, event.params.to).id
+
 	ev.save()
 }
 

@@ -21,6 +21,8 @@ import {
 	fetchAccount
 } from './account'
 
+import { BigDecimal } from '@graphprotocol/graph-ts'
+
 export function fetchERC20(address: Address): ERC20Contract {
 	let account  = fetchAccount(address)
 	let contract = ERC20Contract.load(account.id)
@@ -58,6 +60,29 @@ export function fetchERC20Balance(contract: ERC20Contract, account: Account | nu
 		balance.valueExact      = constants.BIGINT_ZERO
 		balance.save()
 	}
+
+	return balance as ERC20Balance
+}
+
+export function try_fetchERC20Balance(address: Address, account: Address): ERC20Balance {
+	let _account  = fetchAccount(address)
+	let contract = ERC20Contract.load(_account.id)
+
+	let id = (contract as ERC20Contract).id.concat('/').concat(_account.id)
+
+	let balance = ERC20Balance.load(id)
+
+	let endpoint = IERC20.bind(address)
+
+	if (balance == null) {
+		balance                 = new ERC20Balance(id)
+		// balance.contract        = contract.id
+		balance.account         = account ? _account.id : null
+		balance.value           = constants.BIGDECIMAL_ZERO
+		balance.valueExact      = constants.BIGINT_ZERO
+		balance.save()
+	}
+	balance.value = new BigDecimal(endpoint.try_balanceOf(account).value)
 
 	return balance as ERC20Balance
 }

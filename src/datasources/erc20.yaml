@@ -2,9 +2,9 @@
     name: {id}
     network: {chain}
     source:
-      address: "{address}"
+      # address: "0x189bd55B75c25a6479d092312b19A81Ce7AB7571"
       abi: IERC20
-      startBlock: {startBlock}
+      # startBlock: {startBlock}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -19,4 +19,5 @@
           handler: handleApproval
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
+
       file: {file}
