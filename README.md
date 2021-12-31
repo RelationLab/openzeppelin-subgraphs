@@ -23,3 +23,24 @@ yarn deploy-erc20-local
 
 > for details refer docs/*
 
+
+##### sample.json
+```
+{
+  "output": "generated/sample.",
+  "chain": "dev",
+  "id": "erc20",
+  "startBlock": "12000000",
+  "datasources": [
+    {
+      "module": [
+        "erc20"
+      ]
+    }
+  ]
+}
+```
+
+* id: subgraph name
+* startBlock: subgraph original position
+* module: load "erc20""module" from src/datasources/erc20.yaml

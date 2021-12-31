@@ -18,14 +18,16 @@
   "bugs": {
     "url": "https://github.com/OpenZeppelin/openzeppelin-subgraphs.git/issues"
   },
+
+  export SUBGRAPH_ALLOWEDLIST_FILEPATH="/allowlist.json" && /usr/local/bin/graph-node     --postgres-url postgresql://graphnode:123456@47.243.203.129:5432/graphnode     --ethereum-rpc dev:https://mainnet-prod.invault.space/eth-archive --ipfs 47.243.203.129:5001
   "scripts": {
     "compiler-erc20": "graph-compiler --config configs/sample.json --include ./src/datasources --export-schema --export-subgraph",
-
-    "build-erc20": "graph build generated/sample.subgraph.yaml",
     "codegen-erc20": "graph codegen generated/sample.subgraph.yaml",
+    "build-erc20": "graph build generated/sample.subgraph.yaml",
     "create-erc20-local": "graph create erc20 --node http://127.0.0.1:8020",
     "deploy-erc20-local": "graph deploy erc20 --ipfs http://10.0.191.31:5001 --node http://127.0.0.1:8020 generated/sample.subgraph.yaml",
-
+    "create-erc20-dev": "graph create erc20 --node http://47.243.203.129:8020",
+    "deploy-erc20-dev": "graph deploy erc20 --ipfs http:/47.243.203.129:5001 --node http://47.243.203.129:8020 generated/sample.subgraph.yaml",
     "docs": "oz-docs",
     "docs:watch": "npm run docs watch",
     "prepublish": "rimraf artifacts build cache generated",

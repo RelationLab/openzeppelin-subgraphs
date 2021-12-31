@@ -1,7 +1,8 @@
 {
   "output": "generated/sample.",
-  "chain": "privnet",
+  "chain": "dev",
   "id": "erc20",
+  "startBlock": "12000000",
   "datasources": [
     {
       "module": [
