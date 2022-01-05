@@ -19,7 +19,6 @@
     "url": "https://github.com/OpenZeppelin/openzeppelin-subgraphs.git/issues"
   },
 
-  export SUBGRAPH_ALLOWEDLIST_FILEPATH="/allowlist.json" && /usr/local/bin/graph-node     --postgres-url postgresql://graphnode:123456@47.243.203.129:5432/graphnode     --ethereum-rpc dev:https://mainnet-prod.invault.space/eth-archive --ipfs 47.243.203.129:5001
   "scripts": {
     "compiler-erc20": "graph-compiler --config configs/sample.json --include ./src/datasources --export-schema --export-subgraph",
     "codegen-erc20": "graph codegen generated/sample.subgraph.yaml",
